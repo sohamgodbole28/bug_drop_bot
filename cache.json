@@ -919,6 +919,14 @@
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 1"
     },
+    "bugcrowd_https://bugcrowd.com/engagements/amoeboids": {
+        "platform": "Bugcrowd",
+        "name": "/engagements/amoeboids",
+        "url": "https://bugcrowd.com/engagements/amoeboids",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 11"
+    },
     "bugcrowd_https://bugcrowd.com/engagements/anecdotes-vdp-pro": {
         "platform": "Bugcrowd",
         "name": "/engagements/anecdotes-vdp-pro",
@@ -1991,6 +1999,14 @@
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 12"
     },
+    "bugcrowd_https://bugcrowd.com/engagements/envision-ehf": {
+        "platform": "Bugcrowd",
+        "name": "/engagements/envision-ehf",
+        "url": "https://bugcrowd.com/engagements/envision-ehf",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 3"
+    },
     "bugcrowd_https://bugcrowd.com/engagements/epa-vdp": {
         "platform": "Bugcrowd",
         "name": "/engagements/epa-vdp",
@@ -2775,6 +2791,14 @@
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 2"
     },
+    "bugcrowd_https://bugcrowd.com/engagements/lively-apps": {
+        "platform": "Bugcrowd",
+        "name": "/engagements/lively-apps",
+        "url": "https://bugcrowd.com/engagements/lively-apps",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 5"
+    },
     "bugcrowd_https://bugcrowd.com/engagements/loadmaster-vdp": {
         "platform": "Bugcrowd",
         "name": "/engagements/loadmaster-vdp",
@@ -3014,6 +3038,14 @@
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 48"
+    },
+    "bugcrowd_https://bugcrowd.com/engagements/moneytreekkog": {
+        "platform": "Bugcrowd",
+        "name": "/engagements/moneytreekkog",
+        "url": "https://bugcrowd.com/engagements/moneytreekkog",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 11"
     },
     "bugcrowd_https://bugcrowd.com/engagements/moovit-mbb-og": {
         "platform": "Bugcrowd",
