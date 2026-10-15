@@ -769,10 +769,11 @@
         <div class="filter-group">
           <label for="sort-filter" class="filter-label">Sort:</label>
           <select id="sort-filter" class="cyber-select">
-            <option value="DATE_DESC">Newest Started First</option>
-            <option value="DATE_ASC">Oldest Started First</option>
+            <option value="DEFAULT">Default (Active First)</option>
             <option value="NAME_ASC">Name (A-Z)</option>
             <option value="NAME_DESC">Name (Z-A)</option>
+            <option value="DATE_DESC">Newest Started First</option>
+            <option value="DATE_ASC">Oldest Started First</option>
           </select>
         </div>
         <button id="reset-filters-btn" class="reset-btn">Reset Filters</button>
@@ -829,7 +830,7 @@
       platformFilter: 'ALL',
       bountyFilter: 'ALL',
       dateFilter: 'ALL',
-      sortFilter: 'DATE_DESC'
+      sortFilter: 'DEFAULT'
     };
 
     const dom = {
@@ -1012,7 +1013,12 @@
       });
 
       STATE.filteredPrograms.sort((a, b) => {
-        if (STATE.sortFilter === 'DATE_DESC') {
+        if (STATE.sortFilter === 'DEFAULT') {
+          const aPaused = (a.metrics || '').toLowerCase().includes('paused') ? 1 : 0;
+          const bPaused = (b.metrics || '').toLowerCase().includes('paused') ? 1 : 0;
+          if (aPaused !== bPaused) return aPaused - bPaused;
+          return 0;
+        } else if (STATE.sortFilter === 'DATE_DESC') {
           return b.postedTimestamp - a.postedTimestamp;
         } else if (STATE.sortFilter === 'DATE_ASC') {
           if (a.postedTimestamp === 0) return 1;
@@ -1169,13 +1175,13 @@
       dom.platformFilter.value = 'ALL';
       dom.bountyFilter.value = 'ALL';
       dom.dateFilter.value = 'ALL';
-      dom.sortFilter.value = 'DATE_DESC';
+      dom.sortFilter.value = 'DEFAULT';
 
       STATE.searchQuery = '';
       STATE.platformFilter = 'ALL';
       STATE.bountyFilter = 'ALL';
       STATE.dateFilter = 'ALL';
-      STATE.sortFilter = 'DATE_DESC';
+      STATE.sortFilter = 'DEFAULT';
 
       applyFilters();
     });
