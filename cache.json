@@ -765,7 +765,7 @@
         "url": "https://hackerone.com/mariadb",
         "posted_at": "2018-07-23T22:21:00.678Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_mainwp": {
         "platform": "HackerOne",
@@ -925,7 +925,7 @@
         "url": "https://bugcrowd.com/engagements/amoeboids",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 11"
+        "metrics": "In-Scope Assets: 8"
     },
     "bugcrowd_https://bugcrowd.com/engagements/anecdotes-vdp-pro": {
         "platform": "Bugcrowd",
