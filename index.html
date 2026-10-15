@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bug Bounty Watcher | Target Surveillance Matrix</title>
+  <meta name="description" content="Real-time surveillance dashboard monitoring bug bounty programs across HackerOne, Bugcrowd, Intigriti, YesWeHack, and Bugbase.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #07090e;
+      --bg-secondary: #0d121d;
+      --bg-card: rgba(16, 23, 38, 0.75);
+      --bg-card-hover: rgba(22, 32, 54, 0.85);
+      --border-color: rgba(56, 189, 248, 0.15);
+      --border-glow: rgba(0, 240, 255, 0.35);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-cyan: #00f0ff;
+      --accent-green: #00ff88;
+      --accent-purple: #a855f7;
+      --accent-blue: #38bdf8;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-glow: 0 0 25px rgba(0, 240, 255, 0.12);
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(168, 85, 247, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(0, 255, 136, 0.04) 0%, transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+      color: var(--text-main);
+      font-family: var(--font-display);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      flex: 1;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    @media (min-width: 768px) {
+      header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .radar-icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(168, 85, 247, 0.2));
+      border: 1px solid var(--border-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-glow);
+      position: relative;
+    }
+
+    .radar-icon-box svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent-cyan);
+    }
+
+    .title-area h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 30%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .title-area p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+      font-weight: 400;
+    }
+
+    .header-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(0, 255, 136, 0.1);
+      border: 1px solid rgba(0, 255, 136, 0.25);
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--accent-green);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      animation: pulseAnimation 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseAnimation {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-glow);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--card-accent, var(--accent-cyan)), transparent);
+      opacity: 0.8;
+    }
+
+    .stat-card.total { --card-accent: var(--accent-cyan); }
+    .stat-card.h1 { --card-accent: #ff4742; }
+    .stat-card.bc { --card-accent: #f59e0b; }
+    .stat-card.bugbase { --card-accent: #a855f7; }
+    .stat-card.bbp { --card-accent: var(--accent-green); }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-number {
+      font-size: 2.1rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      margin-top: 0.5rem;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .stat-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .controls-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(12px);
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .search-box-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-box-wrap svg {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .clear-search-btn {
+      position: absolute;
+      right: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: none;
+      padding: 0.3rem;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .clear-search-btn:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .cyber-input {
+      width: 100%;
+      background: rgba(8, 12, 20, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.8rem 2.8rem 0.8rem 2.8rem;
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-family: var(--font-display);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .cyber-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    }
+
+    .cyber-input::placeholder {
+      color: rgba(148, 163, 184, 0.5);
+    }
+
+    .filters-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .cyber-select {
+      background: rgba(8, 12, 20, 0.85);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 2.2rem 0.65rem 0.85rem;
+      color: var(--text-main);
+      font-size: 0.86rem;
+      font-family: var(--font-display);
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      background-size: 14px;
+      transition: border-color 0.2s ease;
+    }
+
+    .cyber-select:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .reset-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.65rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.84rem;
+      font-family: var(--font-display);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      margin-left: auto;
+    }
+
+    .reset-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      border-color: var(--text-muted);
+    }
+
+    .table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .cyber-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    .cyber-table thead {
+      background: rgba(13, 18, 29, 0.85);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cyber-table th {
+      padding: 1.1rem 1.25rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .cyber-table th.sortable {
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.15s ease;
+    }
+
+    .cyber-table th.sortable:hover {
+      color: var(--accent-cyan);
+    }
+
+    .cyber-table tbody tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: background 0.15s ease;
+    }
+
+    .cyber-table tbody tr:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .cyber-table td {
+      padding: 1.1rem 1.25rem;
+      vertical-align: middle;
+    }
+
+    .target-name-cell {
+      font-weight: 600;
+      color: #ffffff;
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .platform-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .platform-pill.hackerone {
+      background: rgba(255, 71, 66, 0.12);
+      color: #ff6b67;
+      border: 1px solid rgba(255, 71, 66, 0.28);
+    }
+
+    .platform-pill.bugcrowd {
+      background: rgba(245, 158, 11, 0.12);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.28);
+    }
+
+    .platform-pill.bugbase {
+      background: rgba(168, 85, 247, 0.12);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.28);
+    }
+
+    .platform-pill.intigriti {
+      background: rgba(56, 189, 248, 0.12);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.28);
+    }
+
+    .platform-pill.yeswehack {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.28);
+    }
+
+    .platform-pill.other {
+      background: rgba(148, 163, 184, 0.12);
+      color: var(--text-muted);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+    }
+
+    .bounty-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    .bounty-badge.bbp {
+      background: rgba(0, 255, 136, 0.12);
+      color: var(--accent-green);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+
+    .bounty-badge.vdp {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .date-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--accent-cyan);
+      background: rgba(0, 240, 255, 0.06);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0, 240, 255, 0.18);
+    }
+
+    .date-na {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .metrics-text {
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: var(--radius-sm);
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      color: var(--accent-cyan);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .action-btn:hover {
+      background: var(--accent-cyan);
+      color: var(--bg-primary);
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .action-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 2.2;
+    }
+
+    .pagination-bar {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      background: rgba(13, 18, 29, 0.6);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 640px) {
+      .pagination-bar {
+        flex-direction: row;
+      }
+    }
+
+    .pagination-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .pagination-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .page-btn {
+      background: rgba(16, 23, 38, 0.8);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .page-btn:hover:not(:disabled) {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .empty-state {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      stroke: var(--text-muted);
+      margin-bottom: 1rem;
+      opacity: 0.6;
+    }
+
+    .empty-state h3 {
+      font-size: 1.2rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(0, 240, 255, 0.2);
+      border-radius: 50%;
+      border-top-color: var(--accent-cyan);
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-wrap">
+        <div class="radar-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="m16 12-4-4-4 4"></path>
+            <path d="M12 16V8"></path>
+          </svg>
+        </div>
+        <div class="title-area">
+          <h1>Bug Bounty Watcher</h1>
+          <p>Automated Recon & Surveillance Feed for Public Security Programs</p>
+        </div>
+      </div>
+      <div class="header-status-badge">
+        <span class="pulse-dot"></span>
+        <span id="watcher-status-text">SURVEILLANCE ACTIVE</span>
+      </div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card total">
+        <div class="stat-label">Total Targets Monitored</div>
+        <div class="stat-number" id="stat-total">---</div>
+        <div class="stat-sub">Aggregated across all feeds</div>
+      </div>
+      <div class="stat-card h1">
+        <div class="stat-label">HackerOne Programs</div>
+        <div class="stat-number" id="stat-h1">---</div>
+        <div class="stat-sub">H1 API & bbscope feeds</div>
+      </div>
+      <div class="stat-card bc">
+        <div class="stat-label">Bugcrowd Programs</div>
+        <div class="stat-number" id="stat-bc">---</div>
+        <div class="stat-sub">bbscope Crowdsource Feed</div>
+      </div>
+      <div class="stat-card bugbase">
+        <div class="stat-label">Bugbase Programs</div>
+        <div class="stat-number" id="stat-bugbase">---</div>
+        <div class="stat-sub">bbscope Ecosystem Feed</div>
+      </div>
+      <div class="stat-card bbp">
+        <div class="stat-label">Paid BBP Opportunities</div>
+        <div class="stat-number" id="stat-bbp">---</div>
+        <div class="stat-sub">Offers Cash Bounties</div>
+      </div>
+    </div>
+
+    <div class="controls-panel">
+      <div class="search-box-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="search-input" class="cyber-input" placeholder="Search target name, handle, platform, or metrics..." autocomplete="off">
+        <button id="clear-search-btn" class="clear-search-btn" aria-label="Clear search">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="filters-wrap">
+        <div class="filter-group">
+          <label for="platform-filter" class="filter-label">Platform:</label>
+          <select id="platform-filter" class="cyber-select">
+            <option value="ALL">All Platforms</option>
+            <option value="HackerOne">HackerOne</option>
+            <option value="Bugcrowd">Bugcrowd</option>
+            <option value="Bugbase">Bugbase</option>
+            <option value="Intigriti">Intigriti</option>
+            <option value="YesWeHack">YesWeHack</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="bounty-filter" class="filter-label">Type:</label>
+          <select id="bounty-filter" class="cyber-select">
+            <option value="ALL">All Bounties</option>
+            <option value="BBP">BBP (Paid Bounty)</option>
+            <option value="VDP">VDP (Points Only)</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="date-filter" class="filter-label">Launched:</label>
+          <select id="date-filter" class="cyber-select">
+            <option value="ALL">All Dates</option>
+            <option value="HAS_DATE">Dated Programs Only</option>
+            <option value="30D">Last 30 Days</option>
+            <option value="90D">Last 90 Days</option>
+            <option value="1Y">Last 1 Year</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="sort-filter" class="filter-label">Sort:</label>
+          <select id="sort-filter" class="cyber-select">
+            <option value="DATE_DESC">Newest Started First</option>
+            <option value="DATE_ASC">Oldest Started First</option>
+            <option value="NAME_ASC">Name (A-Z)</option>
+            <option value="NAME_DESC">Name (Z-A)</option>
+          </select>
+        </div>
+        <button id="reset-filters-btn" class="reset-btn">Reset Filters</button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <div class="table-responsive">
+        <table class="cyber-table">
+          <thead>
+            <tr>
+              <th id="th-name">Target Name</th>
+              <th>Platform</th>
+              <th>Bounty Type</th>
+              <th>Started Accepting</th>
+              <th>Metrics / Assets</th>
+              <th style="text-align: right;">Action</th>
+            </tr>
+          </thead>
+          <tbody id="targets-tbody">
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 4rem 1rem;">
+                <div class="loading-spinner"></div>
+                <div style="margin-top: 1rem; color: var(--text-muted); font-family: var(--font-mono);">Connecting to surveillance feed...</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="pagination-bar" id="pagination-bar" style="display: none;">
+        <div class="pagination-info" id="pagination-info">Showing 0-0 of 0</div>
+        <div class="pagination-actions">
+          <button id="prev-page-btn" class="page-btn" disabled>&larr; Prev</button>
+          <span id="current-page-display" style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); padding: 0 0.5rem;">Page 1</span>
+          <button id="next-page-btn" class="page-btn" disabled>Next &rarr;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container" style="padding: 0;">
+      Bug Bounty Surveillance Network &bull; Automated with GitHub Actions &bull; Hosted on Vercel
+    </div>
+  </footer>
+
+  <script>
+    const STATE = {
+      allPrograms: [],
+      filteredPrograms: [],
+      currentPage: 1,
+      pageSize: 50,
+      searchQuery: '',
+      platformFilter: 'ALL',
+      bountyFilter: 'ALL',
+      dateFilter: 'ALL',
+      sortFilter: 'DATE_DESC'
+    };
+
+    const dom = {
+      statTotal: document.getElementById('stat-total'),
+      statH1: document.getElementById('stat-h1'),
+      statBc: document.getElementById('stat-bc'),
+      statBugbase: document.getElementById('stat-bugbase'),
+      statBbp: document.getElementById('stat-bbp'),
+      searchInput: document.getElementById('search-input'),
+      clearSearchBtn: document.getElementById('clear-search-btn'),
+      platformFilter: document.getElementById('platform-filter'),
+      bountyFilter: document.getElementById('bounty-filter'),
+      dateFilter: document.getElementById('date-filter'),
+      sortFilter: document.getElementById('sort-filter'),
+      resetFiltersBtn: document.getElementById('reset-filters-btn'),
+      tbody: document.getElementById('targets-tbody'),
+      paginationBar: document.getElementById('pagination-bar'),
+      paginationInfo: document.getElementById('pagination-info'),
+      prevPageBtn: document.getElementById('prev-page-btn'),
+      nextPageBtn: document.getElementById('next-page-btn'),
+      currentPageDisplay: document.getElementById('current-page-display')
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function formatDate(isoStr) {
+      if (!isoStr || isoStr === 'N/A') return 'N/A';
+      try {
+        const d = new Date(isoStr);
+        if (isNaN(d.getTime())) return isoStr;
+        return d.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+      } catch (e) {
+        return isoStr;
+      }
+    }
+
+    async function fetchCacheData() {
+      try {
+        const response = await fetch('cache.json');
+        if (!response.ok) {
+          throw new Error('HTTP ' + response.status);
+        }
+        const data = await response.json();
+        const programsList = [];
+
+        for (const [key, item] of Object.entries(data)) {
+          if (!item) continue;
+          let platform = item.platform;
+          if (!platform) {
+            if (key.startsWith('h1_')) platform = 'HackerOne';
+            else if (key.startsWith('bugcrowd_')) platform = 'Bugcrowd';
+            else if (key.startsWith('bugbase_')) platform = 'Bugbase';
+            else if (key.startsWith('intigriti_')) platform = 'Intigriti';
+            else if (key.startsWith('yeswehack_')) platform = 'YesWeHack';
+            else platform = 'Unknown';
+          }
+
+          const isBbp = (item.bounty_info && item.bounty_info.includes('BBP')) || item.is_bbp === true;
+          const postedAt = item.posted_at || 'N/A';
+          let parsedTimestamp = 0;
+          if (postedAt !== 'N/A') {
+            const parsed = Date.parse(postedAt);
+            if (!isNaN(parsed)) parsedTimestamp = parsed;
+          }
+
+          programsList.push({
+            id: key,
+            name: item.name || key,
+            platform: platform,
+            url: item.url || '#',
+            bountyInfo: item.bounty_info || (isBbp ? '💰 BBP (Paid Bounty)' : '📋 VDP (Points Only)'),
+            isBbp: isBbp,
+            metrics: item.metrics || 'N/A',
+            postedAt: postedAt,
+            postedTimestamp: parsedTimestamp
+          });
+        }
+
+        STATE.allPrograms = programsList;
+        updateStats();
+        applyFilters();
+      } catch (err) {
+        dom.tbody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <h3>Failed to load target cache</h3>
+                <p>Ensure cache.json exists in root directory. (${escapeHtml(err.message)})</p>
+              </div>
+            </td>
+          </tr>
+        `;
+      }
+    }
+
+    function updateStats() {
+      const total = STATE.allPrograms.length;
+      let h1Count = 0;
+      let bcCount = 0;
+      let bugbaseCount = 0;
+      let bbpCount = 0;
+
+      for (const p of STATE.allPrograms) {
+        const pf = p.platform.toLowerCase();
+        if (pf.includes('hackerone') || pf === 'h1') h1Count++;
+        else if (pf.includes('bugcrowd') || pf === 'bc') bcCount++;
+        else if (pf.includes('bugbase')) bugbaseCount++;
+
+        if (p.isBbp) bbpCount++;
+      }
+
+      dom.statTotal.textContent = total.toLocaleString();
+      dom.statH1.textContent = h1Count.toLocaleString();
+      dom.statBc.textContent = bcCount.toLocaleString();
+      dom.statBugbase.textContent = bugbaseCount.toLocaleString();
+      dom.statBbp.textContent = bbpCount.toLocaleString();
+    }
+
+    function applyFilters() {
+      const query = STATE.searchQuery.trim().toLowerCase();
+      const platform = STATE.platformFilter;
+      const bounty = STATE.bountyFilter;
+      const dateFilter = STATE.dateFilter;
+      const now = Date.now();
+
+      STATE.filteredPrograms = STATE.allPrograms.filter(prog => {
+        if (platform !== 'ALL') {
+          if (prog.platform.toLowerCase() !== platform.toLowerCase()) {
+            return false;
+          }
+        }
+
+        if (bounty === 'BBP' && !prog.isBbp) return false;
+        if (bounty === 'VDP' && prog.isBbp) return false;
+
+        if (dateFilter !== 'ALL') {
+          if (dateFilter === 'HAS_DATE' && (!prog.postedTimestamp || prog.postedTimestamp === 0)) {
+            return false;
+          }
+          if (dateFilter === '30D') {
+            if (!prog.postedTimestamp || now - prog.postedTimestamp > 30 * 86400000) return false;
+          }
+          if (dateFilter === '90D') {
+            if (!prog.postedTimestamp || now - prog.postedTimestamp > 90 * 86400000) return false;
+          }
+          if (dateFilter === '1Y') {
+            if (!prog.postedTimestamp || now - prog.postedTimestamp > 365 * 86400000) return false;
+          }
+        }
+
+        if (query) {
+          const matchName = prog.name.toLowerCase().includes(query);
+          const matchPlatform = prog.platform.toLowerCase().includes(query);
+          const matchMetrics = prog.metrics.toLowerCase().includes(query);
+          const matchDate = prog.postedAt.toLowerCase().includes(query);
+          const matchId = prog.id.toLowerCase().includes(query);
+          if (!matchName && !matchPlatform && !matchMetrics && !matchDate && !matchId) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+
+      STATE.filteredPrograms.sort((a, b) => {
+        if (STATE.sortFilter === 'DATE_DESC') {
+          return b.postedTimestamp - a.postedTimestamp;
+        } else if (STATE.sortFilter === 'DATE_ASC') {
+          if (a.postedTimestamp === 0) return 1;
+          if (b.postedTimestamp === 0) return -1;
+          return a.postedTimestamp - b.postedTimestamp;
+        } else if (STATE.sortFilter === 'NAME_ASC') {
+          return a.name.localeCompare(b.name);
+        } else if (STATE.sortFilter === 'NAME_DESC') {
+          return b.name.localeCompare(a.name);
+        }
+        return 0;
+      });
+
+      STATE.currentPage = 1;
+      renderTable();
+    }
+
+    function renderTable() {
+      const list = STATE.filteredPrograms;
+      const total = list.length;
+
+      if (total === 0) {
+        dom.tbody.innerHTML = `
+          <tr>
+            <td colspan="6">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <h3>No Targets Found</h3>
+                <p>Try adjusting your search criteria or filter options.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        dom.paginationBar.style.display = 'none';
+        return;
+      }
+
+      const totalPages = Math.ceil(total / STATE.pageSize) || 1;
+      if (STATE.currentPage > totalPages) STATE.currentPage = totalPages;
+      if (STATE.currentPage < 1) STATE.currentPage = 1;
+
+      const startIndex = (STATE.currentPage - 1) * STATE.pageSize;
+      const endIndex = Math.min(startIndex + STATE.pageSize, total);
+      const pageSlice = list.slice(startIndex, endIndex);
+
+      let html = '';
+      for (const item of pageSlice) {
+        const pfLower = item.platform.toLowerCase();
+        let pfClass = 'other';
+        if (pfLower.includes('hackerone') || pfLower === 'h1') pfClass = 'hackerone';
+        else if (pfLower.includes('bugcrowd') || pfLower === 'bc') pfClass = 'bugcrowd';
+        else if (pfLower.includes('bugbase')) pfClass = 'bugbase';
+        else if (pfLower.includes('intigriti')) pfClass = 'intigriti';
+        else if (pfLower.includes('yeswehack')) pfClass = 'yeswehack';
+
+        const bountyClass = item.isBbp ? 'bbp' : 'vdp';
+        const bountyBadgeText = item.isBbp ? 'BBP' : 'VDP';
+
+        const dateHtml = item.postedAt !== 'N/A'
+          ? `<span class="date-badge" title="${escapeHtml(item.postedAt)}">🕒 ${escapeHtml(formatDate(item.postedAt))}</span>`
+          : `<span class="date-na">&mdash;</span>`;
+
+        html += `
+          <tr>
+            <td class="target-name-cell" title="${escapeHtml(item.name)}">${escapeHtml(item.name)}</td>
+            <td>
+              <span class="platform-pill ${pfClass}">${escapeHtml(item.platform)}</span>
+            </td>
+            <td>
+              <span class="bounty-badge ${bountyClass}">
+                ${item.isBbp ? '💰' : '📋'} ${bountyBadgeText}
+              </span>
+            </td>
+            <td>${dateHtml}</td>
+            <td>
+              <span class="metrics-text">${escapeHtml(item.metrics)}</span>
+            </td>
+            <td style="text-align: right;">
+              <a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer" class="action-btn">
+                <span>View</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </td>
+          </tr>
+        `;
+      }
+
+      dom.tbody.innerHTML = html;
+      dom.paginationBar.style.display = 'flex';
+      dom.paginationInfo.textContent = `Showing ${(startIndex + 1).toLocaleString()}-${endIndex.toLocaleString()} of ${total.toLocaleString()}`;
+      dom.currentPageDisplay.textContent = `Page ${STATE.currentPage} of ${totalPages}`;
+      dom.prevPageBtn.disabled = STATE.currentPage <= 1;
+      dom.nextPageBtn.disabled = STATE.currentPage >= totalPages;
+    }
+
+    dom.searchInput.addEventListener('input', (e) => {
+      STATE.searchQuery = e.target.value;
+      dom.clearSearchBtn.style.display = STATE.searchQuery ? 'inline-flex' : 'none';
+      applyFilters();
+    });
+
+    dom.clearSearchBtn.addEventListener('click', () => {
+      dom.searchInput.value = '';
+      STATE.searchQuery = '';
+      dom.clearSearchBtn.style.display = 'none';
+      dom.searchInput.focus();
+      applyFilters();
+    });
+
+    dom.platformFilter.addEventListener('change', (e) => {
+      STATE.platformFilter = e.target.value;
+      applyFilters();
+    });
+
+    dom.bountyFilter.addEventListener('change', (e) => {
+      STATE.bountyFilter = e.target.value;
+      applyFilters();
+    });
+
+    dom.dateFilter.addEventListener('change', (e) => {
+      STATE.dateFilter = e.target.value;
+      applyFilters();
+    });
+
+    dom.sortFilter.addEventListener('change', (e) => {
+      STATE.sortFilter = e.target.value;
+      applyFilters();
+    });
+
+    dom.resetFiltersBtn.addEventListener('click', () => {
+      dom.searchInput.value = '';
+      dom.clearSearchBtn.style.display = 'none';
+      dom.platformFilter.value = 'ALL';
+      dom.bountyFilter.value = 'ALL';
+      dom.dateFilter.value = 'ALL';
+      dom.sortFilter.value = 'DATE_DESC';
+
+      STATE.searchQuery = '';
+      STATE.platformFilter = 'ALL';
+      STATE.bountyFilter = 'ALL';
+      STATE.dateFilter = 'ALL';
+      STATE.sortFilter = 'DATE_DESC';
+
+      applyFilters();
+    });
+
+    dom.prevPageBtn.addEventListener('click', () => {
+      if (STATE.currentPage > 1) {
+        STATE.currentPage--;
+        renderTable();
+        window.scrollTo({ top: 380, behavior: 'smooth' });
+      }
+    });
+
+    dom.nextPageBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(STATE.filteredPrograms.length / STATE.pageSize);
+      if (STATE.currentPage < totalPages) {
+        STATE.currentPage++;
+        renderTable();
+        window.scrollTo({ top: 380, behavior: 'smooth' });
+      }
+    });
+
+    fetchCacheData();
+  </script>
+</body>
+</html>

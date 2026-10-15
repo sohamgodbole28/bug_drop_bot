@@ -2,7 +2,7 @@ name: Bug Bounty Watcher
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -25,10 +25,9 @@ jobs:
       - name: Install Dependencies
         run: pip install requests
 
-      - name: Run Script
+      - name: Run Watcher
         env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           H1_API_USERNAME: ${{ secrets.H1_API_USERNAME }}
           H1_API_TOKEN: ${{ secrets.H1_API_TOKEN }}
         run: python watcher.py
@@ -37,7 +36,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add cache.json offset.json
-          if [ -f tracked.json ]; then git add tracked.json; fi
-          git commit -m "Auto-update cache, tracked items, and offsets [skip ci]" || exit 0
+          git add cache.json
+          git commit -m "Auto-update cache.json [skip ci]" || exit 0
           git push
