@@ -34,15 +34,9 @@ jobs:
         run: python watcher.py
 
       - name: Commit and Push State Changes
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add cache.json
-          if git diff --staged --quiet; then
-            echo "No changes to cache.json"
-          else
-            git commit -m "Auto-update cache.json [skip ci]"
-            for i in 1 2 3; do
-              git fetch origin main && git rebase -X theirs origin/main && git push origin main && break || sleep 3
-            done
-          fi
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-update cache.json [skip ci]"
+          file_pattern: 'cache.json'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
