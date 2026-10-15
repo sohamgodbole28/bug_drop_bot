@@ -130,8 +130,6 @@ def fetch_bbscope_programs(session):
                     raw_platform = item.get("platform", "").lower()
                     if raw_platform in ["bc", "bugcrowd"]:
                         platform_name = "Bugcrowd"
-                    elif raw_platform in ["h1", "hackerone"]:
-                        platform_name = "HackerOne"
                     elif raw_platform == "it":
                         platform_name = "Intigriti"
                     elif raw_platform == "ywh":
@@ -150,10 +148,7 @@ def fetch_bbscope_programs(session):
                     bounty_info = "💰 BBP (Paid Bounty)" if is_bbp else "📋 VDP (Points Only)"
 
                     if name and url:
-                        if platform_name == "HackerOne" and handle:
-                            key = f"h1_{handle.strip('/')}"
-                        else:
-                            key = f"{platform_name.lower()}_{url.strip('/').lower()}"
+                        key = f"{platform_name.lower()}_{url.strip('/').lower()}"
 
                         programs[key] = {
                             "platform": platform_name,
