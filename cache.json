@@ -101,7 +101,7 @@
         "url": "https://hackerone.com/basecamp",
         "posted_at": "2015-04-03T05:06:59.053Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_slack": {
         "platform": "HackerOne",
@@ -10597,7 +10597,7 @@
         "url": "https://hackerone.com/gocardless_bbp",
         "posted_at": "2019-07-15T12:34:08.501Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_raivo": {
         "platform": "HackerOne",
