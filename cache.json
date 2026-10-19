@@ -11102,5 +11102,13 @@
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
         "metrics": "In-Scope Assets: 1"
+    },
+    "yeswehack_https://yeswehack.com/programs/govtech-vulnerability-disclosure-programme-policy": {
+        "platform": "YesWeHack",
+        "name": "govtech-vulnerability-disclosure-programme-policy",
+        "url": "https://yeswehack.com/programs/govtech-vulnerability-disclosure-programme-policy",
+        "posted_at": "N/A",
+        "bounty_info": "📋 VDP (Points Only)",
+        "metrics": "In-Scope Assets: 2"
     }
 }
