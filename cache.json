@@ -101,7 +101,7 @@
         "url": "https://hackerone.com/basecamp",
         "posted_at": "2015-04-03T05:06:59.053Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_slack": {
         "platform": "HackerOne",
@@ -1461,7 +1461,7 @@
         "url": "https://bugcrowd.com/engagements/chemistwarehouse-vdp-pro",
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "In-Scope Assets: 16"
+        "metrics": "In-Scope Assets: 15"
     },
     "bugcrowd_https://bugcrowd.com/engagements/chime": {
         "platform": "Bugcrowd",
