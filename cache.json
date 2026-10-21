@@ -125,7 +125,7 @@
         "url": "https://hackerone.com/publitas",
         "posted_at": "2016-05-26T17:23:06.989Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_coinbase": {
         "platform": "HackerOne",
@@ -1149,7 +1149,7 @@
         "url": "https://bugcrowd.com/engagements/binance",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 20"
+        "metrics": "In-Scope Assets: 21"
     },
     "bugcrowd_https://bugcrowd.com/engagements/bitdefender": {
         "platform": "Bugcrowd",
