@@ -781,7 +781,7 @@
         "url": "https://hackerone.com/phpbb",
         "posted_at": "2018-12-19T22:59:03.785Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_dyson": {
         "platform": "HackerOne",
@@ -7189,7 +7189,7 @@
         "url": "https://yeswehack.com/programs/infomaniak-bug-bounty-program",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 52"
+        "metrics": "In-Scope Assets: 53"
     },
     "intigriti_https://app.intigriti.com/researcher/programs/ing/ing-responsible-disclosure/detail": {
         "platform": "Intigriti",
