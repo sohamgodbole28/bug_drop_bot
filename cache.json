@@ -85,7 +85,7 @@
         "url": "https://hackerone.com/concretecms",
         "posted_at": "2014-03-25T16:58:11.964Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_x": {
         "platform": "HackerOne",
@@ -381,7 +381,7 @@
         "url": "https://hackerone.com/moneybird",
         "posted_at": "2015-06-16T13:15:06.526Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_mapbox": {
         "platform": "HackerOne",
@@ -5669,7 +5669,7 @@
         "url": "https://hackerone.com/brave",
         "posted_at": "2016-10-11T20:37:03.644Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_braze_inc": {
         "platform": "HackerOne",
@@ -11115,6 +11115,14 @@
         "platform": "Bugcrowd",
         "name": "flight-centre-vdp-pro",
         "url": "https://bugcrowd.com/engagements/flight-centre-vdp-pro",
+        "posted_at": "N/A",
+        "bounty_info": "📋 VDP (Points Only)",
+        "metrics": "In-Scope Assets: 1"
+    },
+    "bugcrowd_https://bugcrowd.com/engagements/nbn-vdp": {
+        "platform": "Bugcrowd",
+        "name": "nbn-vdp",
+        "url": "https://bugcrowd.com/engagements/nbn-vdp",
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
         "metrics": "In-Scope Assets: 1"
