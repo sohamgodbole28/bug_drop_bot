@@ -2469,7 +2469,7 @@
         "url": "https://bugcrowd.com/engagements/imperva-mbb",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 1"
+        "metrics": "In-Scope Assets: 4"
     },
     "bugcrowd_https://bugcrowd.com/engagements/indeed": {
         "platform": "Bugcrowd",
@@ -3341,7 +3341,7 @@
         "url": "https://bugcrowd.com/engagements/openai",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 10"
+        "metrics": "In-Scope Assets: 11"
     },
     "bugcrowd_https://bugcrowd.com/engagements/openai-safety": {
         "platform": "Bugcrowd",
@@ -11126,5 +11126,13 @@
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
         "metrics": "In-Scope Assets: 1"
+    },
+    "h1_xp_inc_vdp": {
+        "platform": "HackerOne",
+        "name": "XP Inc Vulnerability Disclosure",
+        "url": "https://hackerone.com/xp_inc_vdp",
+        "posted_at": "2026-09-22T16:23:28.732Z",
+        "bounty_info": "📋 VDP (Points Only)",
+        "metrics": "State: open"
     }
 }
