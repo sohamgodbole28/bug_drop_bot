@@ -85,7 +85,7 @@
         "url": "https://hackerone.com/concretecms",
         "posted_at": "2014-03-25T16:58:11.964Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_x": {
         "platform": "HackerOne",
@@ -1573,7 +1573,7 @@
         "url": "https://bugcrowd.com/engagements/cms-bbpublic",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 11"
+        "metrics": "In-Scope Assets: 10"
     },
     "bugcrowd_https://bugcrowd.com/engagements/cms-vdp": {
         "platform": "Bugcrowd",
