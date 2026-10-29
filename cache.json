@@ -2525,7 +2525,7 @@
         "url": "https://bugcrowd.com/engagements/irobot",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 28"
+        "metrics": "In-Scope Assets: 12"
     },
     "bugcrowd_https://bugcrowd.com/engagements/izymes": {
         "platform": "Bugcrowd",
@@ -11132,6 +11132,14 @@
         "name": "XP Inc Vulnerability Disclosure",
         "url": "https://hackerone.com/xp_inc_vdp",
         "posted_at": "2026-09-22T16:23:28.732Z",
+        "bounty_info": "📋 VDP (Points Only)",
+        "metrics": "State: open"
+    },
+    "h1_smartsheet_vdp": {
+        "platform": "HackerOne",
+        "name": "Smartsheet (VDP)",
+        "url": "https://hackerone.com/smartsheet_vdp",
+        "posted_at": "2026-08-05T15:14:56.934Z",
         "bounty_info": "📋 VDP (Points Only)",
         "metrics": "State: open"
     }
