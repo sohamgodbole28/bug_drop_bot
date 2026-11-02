@@ -765,7 +765,7 @@
         "url": "https://hackerone.com/mariadb",
         "posted_at": "2018-07-23T22:21:00.678Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_mainwp": {
         "platform": "HackerOne",
@@ -5669,7 +5669,7 @@
         "url": "https://hackerone.com/brave",
         "posted_at": "2016-10-11T20:37:03.644Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_braze_inc": {
         "platform": "HackerOne",
@@ -6661,7 +6661,7 @@
         "url": "https://hackerone.com/expediagroup_bbp",
         "posted_at": "2018-12-04T00:57:27.707Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_experian": {
         "platform": "HackerOne",
@@ -6877,7 +6877,7 @@
         "url": "https://hackerone.com/fresenius",
         "posted_at": "2022-02-15T10:17:03.421Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_fronthq": {
         "platform": "HackerOne",
@@ -9061,7 +9061,7 @@
         "url": "https://hackerone.com/solidus",
         "posted_at": "2019-06-12T23:04:29.004Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_sony": {
         "platform": "HackerOne",
