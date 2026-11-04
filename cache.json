@@ -10893,7 +10893,7 @@
         "url": "https://hackerone.com/freshworks",
         "posted_at": "2020-11-18T15:34:18.816Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_trafficfactory": {
         "platform": "HackerOne",
@@ -11142,5 +11142,13 @@
         "posted_at": "2026-08-05T15:14:56.934Z",
         "bounty_info": "📋 VDP (Points Only)",
         "metrics": "State: open"
+    },
+    "bugcrowd_https://bugcrowd.com/engagements/bytera-market": {
+        "platform": "Bugcrowd",
+        "name": "bytera-market",
+        "url": "https://bugcrowd.com/engagements/bytera-market",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 4"
     }
 }
