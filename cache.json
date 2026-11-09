@@ -5669,7 +5669,7 @@
         "url": "https://hackerone.com/brave",
         "posted_at": "2016-10-11T20:37:03.644Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_braze_inc": {
         "platform": "HackerOne",
@@ -6189,7 +6189,7 @@
         "url": "https://hackerone.com/defectdojo",
         "posted_at": "2019-05-10T19:16:36.519Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "intigriti_https://app.intigriti.com/researcher/programs/delenprivatebank/privatebankdelen/detail": {
         "platform": "Intigriti",
@@ -6877,7 +6877,7 @@
         "url": "https://hackerone.com/fresenius",
         "posted_at": "2022-02-15T10:17:03.421Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_fronthq": {
         "platform": "HackerOne",
@@ -11150,5 +11150,13 @@
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 4"
+    },
+    "h1_litellm": {
+        "platform": "HackerOne",
+        "name": "LiteLLM (VDP)",
+        "url": "https://hackerone.com/litellm",
+        "posted_at": "2026-11-09T15:10:41.621Z",
+        "bounty_info": "📋 VDP (Points Only)",
+        "metrics": "State: open"
     }
 }
