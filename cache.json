@@ -6189,7 +6189,7 @@
         "url": "https://hackerone.com/defectdojo",
         "posted_at": "2019-05-10T19:16:36.519Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "intigriti_https://app.intigriti.com/researcher/programs/delenprivatebank/privatebankdelen/detail": {
         "platform": "Intigriti",
@@ -10525,7 +10525,7 @@
         "url": "https://hackerone.com/filezilla",
         "posted_at": "2019-10-30T22:13:36.858Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_vlc_h1c": {
         "platform": "HackerOne",
