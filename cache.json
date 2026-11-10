@@ -1437,7 +1437,7 @@
         "url": "https://bugcrowd.com/engagements/cfpb-vdp",
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "In-Scope Assets: 25"
+        "metrics": "In-Scope Assets: 1"
     },
     "bugcrowd_https://bugcrowd.com/engagements/cfr": {
         "platform": "Bugcrowd",
@@ -3341,7 +3341,7 @@
         "url": "https://bugcrowd.com/engagements/openai",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 12"
+        "metrics": "In-Scope Assets: 13"
     },
     "bugcrowd_https://bugcrowd.com/engagements/openai-safety": {
         "platform": "Bugcrowd",
@@ -4485,7 +4485,7 @@
         "url": "https://bugcrowd.com/engagements/tva-vdp",
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "In-Scope Assets: 24"
+        "metrics": "In-Scope Assets: 1"
     },
     "bugcrowd_https://bugcrowd.com/engagements/twentyminuten": {
         "platform": "Bugcrowd",
@@ -4693,7 +4693,7 @@
         "url": "https://bugcrowd.com/engagements/usdot-vdp",
         "posted_at": "N/A",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "In-Scope Assets: 18"
+        "metrics": "In-Scope Assets: 1"
     },
     "bugcrowd_https://bugcrowd.com/engagements/usgs-vdp": {
         "platform": "Bugcrowd",
