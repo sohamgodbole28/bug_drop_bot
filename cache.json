@@ -1197,7 +1197,7 @@
         "url": "https://bugcrowd.com/engagements/bitpanda-og-bb",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 10"
+        "metrics": "In-Scope Assets: 11"
     },
     "bugcrowd_https://bugcrowd.com/engagements/bitso-mbb-og": {
         "platform": "Bugcrowd",
@@ -6493,7 +6493,7 @@
         "url": "https://hackerone.com/dynatrace",
         "posted_at": "2019-04-15T10:07:53.250Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_early_warning": {
         "platform": "HackerOne",
