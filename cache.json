@@ -1941,7 +1941,7 @@
         "url": "https://bugcrowd.com/engagements/easyagile",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 5"
+        "metrics": "In-Scope Assets: 3"
     },
     "bugcrowd_https://bugcrowd.com/engagements/eazybi": {
         "platform": "Bugcrowd",
@@ -10413,7 +10413,7 @@
         "url": "https://hackerone.com/bitmex",
         "posted_at": "2018-02-01T11:36:27.357Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_ed": {
         "platform": "HackerOne",
