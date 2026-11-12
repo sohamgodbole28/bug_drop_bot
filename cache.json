@@ -2021,7 +2021,7 @@
         "url": "https://bugcrowd.com/engagements/epam-mbb-og",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 17"
+        "metrics": "In-Scope Assets: 15"
     },
     "bugcrowd_https://bugcrowd.com/engagements/epicsumup": {
         "platform": "Bugcrowd",
@@ -10965,7 +10965,7 @@
         "url": "https://hackerone.com/divvy-homes",
         "posted_at": "2021-11-16T15:04:15.556Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_agoric": {
         "platform": "HackerOne",
