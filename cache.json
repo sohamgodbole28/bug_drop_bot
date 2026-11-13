@@ -6581,7 +6581,7 @@
         "url": "https://hackerone.com/estee-lauder",
         "posted_at": "2020-07-20T23:44:35.617Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_eufy_security": {
         "platform": "HackerOne",
