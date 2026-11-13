@@ -11158,5 +11158,13 @@
         "posted_at": "2026-11-09T15:10:41.621Z",
         "bounty_info": "📋 VDP (Points Only)",
         "metrics": "State: open"
+    },
+    "h1_anker": {
+        "platform": "HackerOne",
+        "name": "Anker",
+        "url": "https://hackerone.com/anker",
+        "posted_at": "2023-04-19T10:44:21.256Z",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "State: open"
     }
 }
