@@ -4061,7 +4061,7 @@
         "url": "https://bugcrowd.com/engagements/simplisafe",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 24"
+        "metrics": "In-Scope Assets: 21"
     },
     "bugcrowd_https://bugcrowd.com/engagements/sitefinity-vdp": {
         "platform": "Bugcrowd",
@@ -8917,7 +8917,7 @@
         "url": "https://hackerone.com/sheer_bbp",
         "posted_at": "2022-10-20T08:05:40.585Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_shein": {
         "platform": "HackerOne",
@@ -11166,5 +11166,13 @@
         "posted_at": "2023-04-19T10:44:21.256Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "State: open"
+    },
+    "yeswehack_https://yeswehack.com/programs/boursobank-bug-bounty-program": {
+        "platform": "YesWeHack",
+        "name": "boursobank-bug-bounty-program",
+        "url": "https://yeswehack.com/programs/boursobank-bug-bounty-program",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 6"
     }
 }
