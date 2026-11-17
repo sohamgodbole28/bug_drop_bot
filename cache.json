@@ -765,7 +765,7 @@
         "url": "https://hackerone.com/mariadb",
         "posted_at": "2018-07-23T22:21:00.678Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_mainwp": {
         "platform": "HackerOne",
