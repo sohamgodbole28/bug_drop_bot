@@ -213,7 +213,7 @@
         "url": "https://hackerone.com/expressionengine",
         "posted_at": "2014-07-15T19:17:33.309Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_digitalsellz": {
         "platform": "HackerOne",
@@ -9061,7 +9061,7 @@
         "url": "https://hackerone.com/solidus",
         "posted_at": "2019-06-12T23:04:29.004Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_sony": {
         "platform": "HackerOne",
@@ -11174,5 +11174,13 @@
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 6"
+    },
+    "h1_coupang": {
+        "platform": "HackerOne",
+        "name": "Coupang",
+        "url": "https://hackerone.com/coupang",
+        "posted_at": "2025-04-23T00:58:58.554Z",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "State: open"
     }
 }
