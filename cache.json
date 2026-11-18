@@ -285,7 +285,7 @@
         "url": "https://hackerone.com/algolia",
         "posted_at": "2015-08-19T09:31:48.615Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_informatica": {
         "platform": "HackerOne",
@@ -381,7 +381,7 @@
         "url": "https://hackerone.com/moneybird",
         "posted_at": "2015-06-16T13:15:06.526Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_mapbox": {
         "platform": "HackerOne",
@@ -5021,7 +5021,7 @@
         "url": "https://hackerone.com/abercrombie_fitch_bbp",
         "posted_at": "2022-08-08T21:13:15.370Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "h1_abn_amro_vdp": {
         "platform": "HackerOne",
@@ -11182,5 +11182,13 @@
         "posted_at": "2025-04-23T00:58:58.554Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "State: open"
+    },
+    "bugcrowd_https://bugcrowd.com/engagements/nord-security-mbb": {
+        "platform": "Bugcrowd",
+        "name": "nord-security-mbb",
+        "url": "https://bugcrowd.com/engagements/nord-security-mbb",
+        "posted_at": "N/A",
+        "bounty_info": "💰 BBP (Paid Bounty)",
+        "metrics": "In-Scope Assets: 40"
     }
 }
