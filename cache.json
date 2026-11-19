@@ -1029,7 +1029,7 @@
         "url": "https://bugcrowd.com/engagements/atlassian",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 50"
+        "metrics": "In-Scope Assets: 48"
     },
     "bugcrowd_https://bugcrowd.com/engagements/atlassianapps": {
         "platform": "Bugcrowd",
@@ -2885,7 +2885,7 @@
         "url": "https://bugcrowd.com/engagements/majidalfuttaim-loyalty",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 27"
+        "metrics": "In-Scope Assets: 40"
     },
     "bugcrowd_https://bugcrowd.com/engagements/mallofemirates": {
         "platform": "Bugcrowd",
@@ -2893,7 +2893,7 @@
         "url": "https://bugcrowd.com/engagements/mallofemirates",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 25"
+        "metrics": "In-Scope Assets: 19"
     },
     "bugcrowd_https://bugcrowd.com/engagements/marketplaceexpert": {
         "platform": "Bugcrowd",
@@ -9325,7 +9325,7 @@
         "url": "https://yeswehack.com/programs/telenor-sweden-public-bug-bounty-program",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 25"
+        "metrics": "In-Scope Assets: 23"
     },
     "h1_temu": {
         "platform": "HackerOne",
@@ -9797,7 +9797,7 @@
         "url": "https://yeswehack.com/programs/vidaxl-services-open-bug-bounty-program",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 38"
+        "metrics": "In-Scope Assets: 4"
     },
     "yeswehack_https://yeswehack.com/programs/vincisa-public-program": {
         "platform": "YesWeHack",
