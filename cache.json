@@ -6901,7 +6901,7 @@
         "url": "https://hackerone.com/global-payments",
         "posted_at": "2021-03-01T17:05:32.788Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "intigriti_https://app.intigriti.com/researcher/programs/globalsign/globalsign/detail": {
         "platform": "Intigriti",
@@ -10037,7 +10037,7 @@
         "url": "https://hackerone.com/worldpay",
         "posted_at": "2025-04-01T14:50:59.945Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "intigriti_https://app.intigriti.com/researcher/programs/wpengine/wpengine/detail": {
         "platform": "Intigriti",
