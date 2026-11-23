@@ -11190,5 +11190,13 @@
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
         "metrics": "In-Scope Assets: 40"
+    },
+    "h1_gcash_vdp": {
+        "platform": "HackerOne",
+        "name": "GCash Vulnerability Disclosure",
+        "url": "https://hackerone.com/gcash_vdp",
+        "posted_at": "2026-09-14T01:01:27.170Z",
+        "bounty_info": "📋 VDP (Points Only)",
+        "metrics": "State: open"
     }
 }
