@@ -2037,7 +2037,7 @@
         "url": "https://bugcrowd.com/engagements/etoro-mbb-og",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 8"
+        "metrics": "In-Scope Assets: 3"
     },
     "bugcrowd_https://bugcrowd.com/engagements/etsy": {
         "platform": "Bugcrowd",
@@ -2701,7 +2701,7 @@
         "url": "https://bugcrowd.com/engagements/latitude-financial-service-bugbounty",
         "posted_at": "N/A",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "In-Scope Assets: 26"
+        "metrics": "In-Scope Assets: 14"
     },
     "bugcrowd_https://bugcrowd.com/engagements/latitudefinancial-vdp": {
         "platform": "Bugcrowd",
@@ -5669,7 +5669,7 @@
         "url": "https://hackerone.com/brave",
         "posted_at": "2016-10-11T20:37:03.644Z",
         "bounty_info": "💰 BBP (Paid Bounty)",
-        "metrics": "State: paused"
+        "metrics": "State: open"
     },
     "h1_braze_inc": {
         "platform": "HackerOne",
