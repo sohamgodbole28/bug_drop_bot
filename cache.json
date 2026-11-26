@@ -7829,7 +7829,7 @@
         "url": "https://hackerone.com/mondelez",
         "posted_at": "2021-10-26T21:12:40.196Z",
         "bounty_info": "📋 VDP (Points Only)",
-        "metrics": "State: open"
+        "metrics": "State: paused"
     },
     "yeswehack_https://yeswehack.com/programs/moneybox-bug-bounty": {
         "platform": "YesWeHack",
